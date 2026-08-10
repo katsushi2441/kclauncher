@@ -10,122 +10,152 @@
   body{margin:0;background:#eef2f5;color:#22303c;
     font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6;
     padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-  header{background:linear-gradient(90deg,var(--c),var(--a));color:#fff;padding:18px 18px;font-weight:900;font-size:20px;
+  header{background:linear-gradient(90deg,var(--c),var(--a));color:#fff;padding:16px 18px;font-weight:900;font-size:19px;
     display:flex;align-items:center;gap:10px}
-  header .logo{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:16px}
-  main{max-width:640px;margin:0 auto;padding:16px 14px 40px}
-  h2{font-size:13px;color:#5a6b7a;letter-spacing:.06em;margin:18px 4px 8px}
+  header .logo{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:15px}
+  main{max-width:640px;margin:0 auto;padding:14px 14px 40px}
+  .toolbar{display:flex;gap:8px;justify-content:flex-end;margin:0 2px 10px}
+  .toolbar button{background:#fff;border:1px solid #cfd9e2;border-radius:999px;padding:7px 16px;font-size:13px;font-weight:800;color:#42566a;cursor:pointer}
+  .toolbar button.on{background:var(--a);color:#fff;border-color:var(--a)}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .tile{position:relative;display:flex;flex-direction:column;justify-content:space-between;
-    min-height:104px;background:#fff;border:1px solid #dbe3ea;border-radius:16px;padding:14px;
+    min-height:110px;background:#fff;border:1px solid #dbe3ea;border-radius:16px;padding:14px;
     text-decoration:none;color:#22303c;box-shadow:0 6px 16px rgba(20,40,60,.06)}
   .tile:active{transform:scale(.98)}
-  .tile .emoji{font-size:30px}
+  .tile .emoji{font-size:32px}
   .tile b{font-size:15px}
   .tile small{color:#6b7a88;font-size:11px;word-break:break-all}
-  .tile .del{position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;
-    background:#f0f3f6;color:#c0392b;font-size:15px;font-weight:900;line-height:1;cursor:pointer;display:none}
-  body.edit .tile .del{display:block}
-  .addcard{background:#fff;border:1px dashed #b9c6d2;border-radius:16px;padding:14px;margin-top:12px}
-  .addcard label{display:block;font-size:12px;color:#5a6b7a;font-weight:700;margin:6px 0 3px}
-  .addcard input{width:100%;border:1px solid #cfd9e2;border-radius:10px;padding:10px;font:inherit;background:#fbfdfe}
+  .tile .acts{position:absolute;top:6px;right:6px;display:none;gap:6px}
+  body.edit .tile .acts{display:flex}
+  .tile .acts button{width:28px;height:28px;border:0;border-radius:50%;font-size:14px;font-weight:900;line-height:1;cursor:pointer}
+  .tile .edit{background:#eaf1fb;color:#2f6bd8}
+  .tile .del{background:#fdecec;color:#c0392b}
+  body.edit .tile{border-style:dashed}
+  .empty{grid-column:1/3;color:#9aa8b5;font-size:13px;text-align:center;padding:14px}
+  .card{background:#fff;border:1px solid #dbe3ea;border-radius:16px;padding:16px;margin-top:14px}
+  .card h3{margin:0 0 4px;font-size:15px}
+  .card label{display:block;font-size:12px;color:#5a6b7a;font-weight:700;margin:8px 0 3px}
+  .card input{width:100%;border:1px solid #cfd9e2;border-radius:10px;padding:11px;font:inherit;background:#fbfdfe}
   .row{display:flex;gap:10px}.row>div{flex:1}
-  .btn{margin-top:10px;width:100%;border:0;border-radius:11px;background:var(--a);color:#fff;font:800 14px inherit;padding:12px;cursor:pointer}
-  .toolbar{display:flex;gap:8px;justify-content:flex-end;margin:2px 4px 0}
-  .toolbar button{background:#fff;border:1px solid #cfd9e2;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:#42566a;cursor:pointer}
-  .hint{color:#8090a0;font-size:11.5px;text-align:center;margin-top:22px;padding:0 10px}
+  .btn{margin-top:12px;width:100%;border:0;border-radius:11px;background:var(--a);color:#fff;font:800 15px inherit;padding:12px;cursor:pointer}
+  .btn.ghost{background:#fff;color:#42566a;border:1px solid #cfd9e2;margin-top:8px}
+  .hint{color:#8090a0;font-size:11.5px;margin:6px 2px 0}
+  .foot{color:#9aa8b5;font-size:11px;text-align:center;margin-top:24px}
 </style>
 </head>
 <body>
 <header><span class="logo">🪼</span>Kurage ランチャー</header>
 <main>
-  <div class="toolbar">
-    <button id="editBtn">編集</button>
-  </div>
+  <div class="toolbar"><button id="editBtn">編集</button></div>
+  <div class="grid" id="grid"></div>
 
-  <h2>KURAGE サービス</h2>
-  <div class="grid" id="builtin"></div>
-
-  <h2>マイリンク（自分のサーバーなど）</h2>
-  <div class="grid" id="mine"></div>
-
-  <div class="addcard">
-    <b style="font-size:14px">＋ リンクを追加</b>
+  <div class="card" id="form" style="display:none">
+    <h3 id="formTitle">＋ リンクを追加</h3>
     <div class="row">
-      <div><label>名前</label><input id="addName" placeholder="例: うちのカレンダー"></div>
-      <div><label>絵文字</label><input id="addEmoji" placeholder="🗓" maxlength="2"></div>
+      <div style="flex:3"><label>名前</label><input id="fName" placeholder="例: うちのカレンダー"></div>
+      <div style="flex:1"><label>絵文字</label><input id="fEmoji" placeholder="🗓" maxlength="2"></div>
     </div>
-    <label>URL</label><input id="addUrl" placeholder="https://あなたのサーバー/cal/" inputmode="url">
-    <button class="btn" id="addBtn">追加する</button>
-    <p style="color:#8090a0;font-size:11px;margin:8px 0 0">
-      kcaldav.php のURLを入れればカレンダー、kuragev.php を入れれば動画、と中身は開くURL次第で変わります。</p>
+    <label>URL</label><input id="fUrl" placeholder="https://あなたのサーバー/cal/" inputmode="url">
+    <button class="btn" id="saveBtn">保存</button>
+    <button class="btn ghost" id="cancelBtn">キャンセル</button>
+    <p class="hint">自分のサーバーの kcaldav.php を入れればカレンダー、kuragev.php を入れれば動画。開くURL次第で中身が変わります。</p>
   </div>
 
-  <p class="hint">タップでアプリ内に開きます。端末の「戻る」でここへ戻ります。<br>powered by Capacitor</p>
+  <button class="btn" id="addBtn" style="max-width:640px">＋ リンクを追加</button>
+  <p class="foot">タイルはアプリ内ブラウザで開きます（左上の×でここへ戻る）。<br>powered by Capacitor</p>
 </main>
 
 <script>
-  // 既定のKurageサービス(URLを差し替えれば中身が変わる、という思想の実例)
-  var BUILTIN = [
+  var DEFAULTS = [
     {emoji:'🗓', name:'カレンダー',  url:'https://exbridge.jp/cal/'},
     {emoji:'🎬', name:'Kurage動画', url:'https://kurage.exbridge.jp/kuragev.php'}
   ];
+  var editingIndex = null;
 
-  function load(){ try{ return JSON.parse(localStorage.getItem('kc_links')||'[]'); }catch(e){ return []; } }
-  function save(a){ localStorage.setItem('kc_links', JSON.stringify(a)); }
-  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-
-  function tileHtml(item, idx){
-    var del = (idx!=null) ? '<button class="del" data-i="'+idx+'">×</button>' : '';
-    return '<a class="tile" href="'+esc(item.url)+'">'+del+
-      '<span class="emoji">'+esc(item.emoji||'🔗')+'</span>'+
-      '<span><b>'+esc(item.name)+'</b><br><small>'+esc(item.url)+'</small></span></a>';
+  function load(){
+    var raw = localStorage.getItem('kc_tiles');
+    if (raw === null) { save(DEFAULTS); return DEFAULTS.slice(); }
+    try { var a = JSON.parse(raw); return Array.isArray(a) ? a : DEFAULTS.slice(); }
+    catch(e){ return DEFAULTS.slice(); }
   }
+  function save(a){ localStorage.setItem('kc_tiles', JSON.stringify(a)); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
   function render(){
-    document.getElementById('builtin').innerHTML = BUILTIN.map(function(x){return tileHtml(x,null);}).join('');
-    var mine = load();
-    var m = document.getElementById('mine');
-    m.innerHTML = mine.length ? mine.map(function(x,i){return tileHtml(x,i);}).join('')
-      : '<p style="grid-column:1/3;color:#9aa8b5;font-size:12.5px;text-align:center;padding:8px 0">まだありません。下から追加できます。</p>';
-    // 削除
-    var dels = m.querySelectorAll('.del');
-    for (var k=0;k<dels.length;k++){
-      dels[k].addEventListener('click', function(e){
-        e.preventDefault(); e.stopPropagation();
-        var a=load(); a.splice(parseInt(this.getAttribute('data-i'),10),1); save(a); render();
-      });
-    }
+    var list = load();
+    var g = document.getElementById('grid');
+    g.innerHTML = list.length ? list.map(function(x,i){
+      return '<a class="tile" href="'+esc(x.url)+'">'
+        + '<span class="acts"><button class="edit" data-edit="'+i+'">✎</button>'
+        + '<button class="del" data-del="'+i+'">×</button></span>'
+        + '<span class="emoji">'+esc(x.emoji||'🔗')+'</span>'
+        + '<span><b>'+esc(x.name)+'</b><br><small>'+esc(x.url)+'</small></span></a>';
+    }).join('') : '<p class="empty">タイルがありません。下の「＋ リンクを追加」から追加してください。</p>';
   }
 
-  document.getElementById('addBtn').addEventListener('click', function(){
-    var name=document.getElementById('addName').value.trim();
-    var url=document.getElementById('addUrl').value.trim();
-    var emoji=document.getElementById('addEmoji').value.trim()||'🔗';
-    if(!name || !/^https?:\/\//.test(url)){ alert('名前と、http(s)で始まるURLを入れてください。'); return; }
-    var a=load(); a.push({emoji:emoji,name:name,url:url}); save(a);
-    document.getElementById('addName').value=''; document.getElementById('addUrl').value=''; document.getElementById('addEmoji').value='';
-    render();
-  });
-  document.getElementById('editBtn').addEventListener('click', function(){
-    document.body.classList.toggle('edit');
-    this.textContent = document.body.classList.contains('edit') ? '完了' : '編集';
+  function openForm(idx){
+    editingIndex = (idx==null) ? null : idx;
+    var list = load();
+    var t = (idx==null) ? {emoji:'',name:'',url:''} : list[idx];
+    document.getElementById('fName').value = t.name || '';
+    document.getElementById('fEmoji').value = t.emoji || '';
+    document.getElementById('fUrl').value = t.url || '';
+    document.getElementById('formTitle').textContent = (idx==null) ? '＋ リンクを追加' : 'リンクを編集';
+    document.getElementById('saveBtn').textContent = (idx==null) ? '追加する' : '更新する';
+    document.getElementById('form').style.display = 'block';
+    document.getElementById('addBtn').style.display = 'none';
+    document.getElementById('fName').focus();
+  }
+  function closeForm(){
+    editingIndex = null;
+    document.getElementById('form').style.display = 'none';
+    document.getElementById('addBtn').style.display = '';
+  }
+
+  document.getElementById('addBtn').addEventListener('click', function(){ openForm(null); });
+  document.getElementById('cancelBtn').addEventListener('click', closeForm);
+  document.getElementById('saveBtn').addEventListener('click', function(){
+    var name = document.getElementById('fName').value.trim();
+    var url  = document.getElementById('fUrl').value.trim();
+    var emoji= document.getElementById('fEmoji').value.trim() || '🔗';
+    if (!name || !/^https?:\/\//.test(url)) { alert('名前と、http(s)で始まるURLを入れてください。'); return; }
+    var list = load();
+    if (editingIndex==null) { list.push({emoji:emoji,name:name,url:url}); }
+    else { list[editingIndex] = {emoji:emoji,name:name,url:url}; }
+    save(list); closeForm(); render();
   });
 
-  // アプリ(Capacitor)では、タイルを"アプリ内ブラウザ"で開く。
-  // → 閉じる(×)ボタンで必ずランチャーに戻れる／中身は本物のChromeなので
-  //   リール等の自動再生・全画面も動く。ブラウザ(非アプリ)では普通に遷移。
+  // タイルの編集/削除(編集モード時)
+  document.getElementById('grid').addEventListener('click', function(e){
+    var ed = e.target.getAttribute && e.target.getAttribute('data-edit');
+    var dl = e.target.getAttribute && e.target.getAttribute('data-del');
+    if (ed!=null && ed!==''){ e.preventDefault(); e.stopPropagation(); openForm(parseInt(ed,10)); return; }
+    if (dl!=null && dl!==''){ e.preventDefault(); e.stopPropagation();
+      var list=load(); var t=list[parseInt(dl,10)];
+      if (confirm('「'+(t?t.name:'')+'」を削除しますか？')){ list.splice(parseInt(dl,10),1); save(list); render(); }
+      return;
+    }
+  }, true);
+
+  document.getElementById('editBtn').addEventListener('click', function(){
+    var on = document.body.classList.toggle('edit');
+    this.classList.toggle('on', on);
+    this.textContent = on ? '完了' : '編集';
+    if (!on) closeForm();
+  });
+
+  // アプリ(Capacitor)ではタイルをアプリ内ブラウザで開く(×で戻れる/本物のChromeで動画も動く)
   var isNative = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
   if (isNative) {
-    document.addEventListener('click', function(e){
+    document.getElementById('grid').addEventListener('click', function(e){
+      if (document.body.classList.contains('edit')) return;         // 編集中は開かない
       var a = e.target.closest ? e.target.closest('a.tile') : null;
       if (!a) return;
-      if (document.body.classList.contains('edit')) return; // 編集中の削除等は通常動作
       e.preventDefault();
       var B = window.Capacitor.Plugins.Browser;
-      if (B && B.open) { B.open({ url: a.getAttribute('href'), toolbarColor: '#2f6bd8', presentationStyle: 'fullscreen' }); }
+      if (B && B.open) { B.open({ url:a.getAttribute('href'), toolbarColor:'#2f6bd8', presentationStyle:'fullscreen' }); }
       else { window.location.href = a.getAttribute('href'); }
-    }, true);
+    });
   }
 
   render();
