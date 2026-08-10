@@ -115,6 +115,23 @@
     document.body.classList.toggle('edit');
     this.textContent = document.body.classList.contains('edit') ? '完了' : '編集';
   });
+
+  // アプリ(Capacitor)では、タイルを"アプリ内ブラウザ"で開く。
+  // → 閉じる(×)ボタンで必ずランチャーに戻れる／中身は本物のChromeなので
+  //   リール等の自動再生・全画面も動く。ブラウザ(非アプリ)では普通に遷移。
+  var isNative = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+  if (isNative) {
+    document.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a.tile') : null;
+      if (!a) return;
+      if (document.body.classList.contains('edit')) return; // 編集中の削除等は通常動作
+      e.preventDefault();
+      var B = window.Capacitor.Plugins.Browser;
+      if (B && B.open) { B.open({ url: a.getAttribute('href'), toolbarColor: '#2f6bd8', presentationStyle: 'fullscreen' }); }
+      else { window.location.href = a.getAttribute('href'); }
+    }, true);
+  }
+
   render();
 </script>
 </body>
