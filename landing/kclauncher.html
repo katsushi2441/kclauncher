@@ -146,6 +146,27 @@ footer a{color:var(--indigo)}
     </div>
   </section>
 
+  <section>
+    <h2 class="sec disp">SYNC</h2>
+    <h3 class="sec-title disp">Thunderbird・iPhone・Android／Googleカレンダーと同期</h3>
+    <p class="lead" style="margin:0 0 20px">ランチャーのカレンダー（kcaldav）は CalDAV。同じ予定を、どの端末からでも読み書きできます。サーバーが唯一の正なので、どこで足した予定も全部に反映されます。</p>
+    <div class="grid">
+      <div class="card"><span class="ic">💻</span><b>PC / Thunderbird</b><p>内蔵のCalDAVクライアントで双方向同期。出先のスマホで足した予定もPCに反映されます。</p></div>
+      <div class="card"><span class="ic">📱</span><b>iPhone / iPad</b><p>OS標準のカレンダーにCalDAVアカウントを追加するだけ。アプリのインストール不要。</p></div>
+      <div class="card"><span class="ic">🟢</span><b>Android / Googleカレンダー</b><p>DAVx5（下記）を使うと、Android標準＝Googleカレンダーアプリに予定を表示・編集できます。</p></div>
+    </div>
+
+    <div class="panel and" style="margin-top:20px">
+      <h4>🟢 AndroidでGoogleカレンダーアプリと同期する（DAVx5）</h4>
+      <div class="steps" style="margin-top:14px">
+        <div class="step"><b>DAVx5を入れる（無料）</b><p>F-Droid版が無料です。<a href="https://f-droid.org/packages/at.bitfire.davdroid/" target="_blank" rel="noopener">DAVx5（F-Droid）</a> を開いてインストール。※Google Play版は有料。</p></div>
+        <div class="step"><b>アカウントを追加</b><p>DAVx5で <span class="kbd">＋</span> →「URLとユーザー名でログイン」。URLに kcaldav のアドレス、ユーザー名・パスワードを入力。</p></div>
+        <div class="step"><b>Googleカレンダーで見る</b><p>同期後、Googleカレンダーアプリの表示設定で kcaldav のカレンダーをオンに。閲覧・追加・編集ができ、Thunderbird/iPhoneにも反映されます。</p></div>
+      </div>
+      <p class="mini">予定はGoogleのクラウドではなく、あなたの kcaldav サーバーに保存されます（DAVx5が端末とサーバーを同期）。</p>
+    </div>
+  </section>
+
   <div class="note-card">
     <b>自分のサーバーで使いたい方へ。</b> ランチャーのカレンダーは Kurage の CalDAV サーバー
     <a href="https://exbridge.jp/cal/">kcaldav</a> を開いています。自分のサーバーに <code>kcaldav.php</code> を置いて、

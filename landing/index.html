@@ -146,6 +146,27 @@ footer a{color:var(--indigo)}
     </div>
   </section>
 
+  <section>
+    <h2 class="sec disp">SYNC</h2>
+    <h3 class="sec-title disp">Sync with Thunderbird, iPhone, Android &amp; Google Calendar</h3>
+    <p class="lead" style="margin:0 0 20px">The launcher's calendar (kcaldav) speaks CalDAV. Read and write the same events from any device — the server is the single source of truth, so everything stays in sync.</p>
+    <div class="grid">
+      <div class="card"><span class="ic">💻</span><b>PC / Thunderbird</b><p>Two-way sync via the built-in CalDAV client. Events you add on your phone show up on your PC.</p></div>
+      <div class="card"><span class="ic">📱</span><b>iPhone / iPad</b><p>Just add a CalDAV account to the built-in Calendar app. No app to install.</p></div>
+      <div class="card"><span class="ic">🟢</span><b>Android / Google Calendar</b><p>With DAVx5 (below), your events appear in the Android system calendar — the Google Calendar app — to view and edit.</p></div>
+    </div>
+
+    <div class="panel and" style="margin-top:20px">
+      <h4>🟢 Sync with the Google Calendar app on Android (DAVx5)</h4>
+      <div class="steps" style="margin-top:14px">
+        <div class="step"><b>Install DAVx5 (free)</b><p>The F-Droid build is free. Open <a href="https://f-droid.org/packages/at.bitfire.davdroid/" target="_blank" rel="noopener">DAVx5 on F-Droid</a> and install. (The Google Play build is paid.)</p></div>
+        <div class="step"><b>Add your account</b><p>In DAVx5, tap <span class="kbd">+</span> → “Login with URL and user name”. Enter your kcaldav URL, user name and password.</p></div>
+        <div class="step"><b>See it in Google Calendar</b><p>Once synced, enable the kcaldav calendar in the Google Calendar app. View, add and edit events — and they sync back to Thunderbird / iPhone.</p></div>
+      </div>
+      <p class="mini">Events are stored on your own kcaldav server, not in Google's cloud (DAVx5 syncs your device with the server).</p>
+    </div>
+  </section>
+
   <div class="note-card">
     <b>Want to run it against your own server?</b> The launcher's calendar opens Kurage's CalDAV server
     <a href="https://exbridge.jp/cal/">kcaldav</a>. Put <code>kcaldav.php</code> on your own server and add that URL as a tile
