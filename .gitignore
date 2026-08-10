@@ -9,3 +9,4 @@ android/.gradle/
 android/capacitor-cordova-android-plugins/build/
 android/local.properties
 resources/
+landing/kclauncher.apk

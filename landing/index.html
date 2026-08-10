@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kurage Launcher | Open Kurage services from your home screen in one tap (iPhone / Android)</title>
+<meta name="description" content="Calendar, videos, games and new apps in one launcher. On iPhone just Add to Home Screen (no app needed); on Android download the app. Add your own server's calendar URL too — a generic launcher whose contents change by URL.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kclauncher.exbridge.jp/">
+<link rel="alternate" hreflang="ja" href="https://kclauncher.exbridge.jp/kclauncher.html">
+<link rel="alternate" hreflang="en" href="https://kclauncher.exbridge.jp/">
+<link rel="alternate" hreflang="x-default" href="https://kclauncher.exbridge.jp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kurage Project">
+<meta property="og:title" content="Kurage Launcher — Open Kurage services from your home screen in one tap">
+<meta property="og:description" content="Calendar, videos, games and new apps in one launcher. iPhone: Add to Home Screen. Android: download the app.">
+<meta property="og:url" content="https://kclauncher.exbridge.jp/">
+<meta property="og:image" content="https://kclauncher.exbridge.jp/assets/ogp.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kurage Launcher">
+<meta name="twitter:description" content="Open Kurage services from your home screen in one tap. iPhone / Android.">
+<meta name="twitter:image" content="https://kclauncher.exbridge.jp/assets/ogp.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Kurage Launcher",
+  "url": "https://kclauncher.exbridge.jp/",
+  "description": "A launcher that opens Kurage's calendar, videos, games and new apps from your home screen. iPhone as a PWA (Add to Home Screen), Android as an app. You can add your own server's calendar URL too.",
+  "applicationCategory": "Utilities",
+  "operatingSystem": "iOS, Android, Web",
+  "inLanguage": "en",
+  "image": "https://kclauncher.exbridge.jp/assets/ogp.png",
+  "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "JPY", "description": "Free"}],
+  "publisher": {"@type": "Organization", "name": "Kurage Project", "url": "https://kurage.exbridge.jp/"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#2f6bd8;--cyan:#0b91a7;--ink:#17324d;--muted:#64788a;--border:#dbe6ee;--soft:#f6fbfd}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:#fff;font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8}
+.disp{font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif}
+.langsw{position:absolute;top:14px;right:16px;font-size:12px;z-index:3}
+.langsw a{color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:4px 12px;background:#fff}
+main{max-width:960px;margin:0 auto;padding:0 20px 40px;position:relative}
+.hero{padding:60px 0 34px;text-align:center}
+.mark{width:92px;height:92px;border-radius:50%;border:3px solid var(--cyan);object-fit:cover;box-shadow:0 10px 26px rgba(11,145,167,.22)}
+.tagline{display:block;margin:16px 0 4px;color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:.14em}
+h1{margin:2px 0 8px;font-size:clamp(24px,6.4vw,42px);font-weight:900;overflow-wrap:anywhere}
+h1 em{font-style:normal;color:var(--indigo)}
+.lead{max-width:600px;margin:0 auto 26px;color:var(--muted);font-size:15px}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;text-decoration:none;font-weight:900;font-size:15px;transition:transform .15s}
+.cta:hover{transform:translateY(-2px)}
+.cta.ios{color:#fff;background:linear-gradient(90deg,#111,#333);box-shadow:0 10px 24px rgba(0,0,0,.22)}
+.cta.and{color:#fff;background:linear-gradient(90deg,#0b91a7,#2f6bd8);box-shadow:0 10px 24px rgba(11,145,167,.28)}
+.cta .em{font-size:20px}
+.cta small{display:block;font-weight:700;font-size:11px;opacity:.85}
+@media(max-width:460px){.cta{width:100%;justify-content:center}}
+.cta-note{margin-top:14px;color:var(--muted);font-size:12px}
+.cta-note a{color:var(--indigo)}
+h2.sec{margin:52px 0 6px;font-size:13px;color:var(--cyan);letter-spacing:.12em;font-weight:800}
+h3.sec-title{margin:0 0 20px;font-size:22px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{padding:20px;border:1px solid var(--border);border-radius:16px;background:#fff;box-shadow:0 10px 26px rgba(25,72,78,.06)}
+.card .ic{font-size:24px}
+.card b{display:block;margin:8px 0 4px;font-size:15px}
+.card p{margin:0;color:var(--muted);font-size:12.5px}
+.steps{counter-reset:st;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:22px 18px 18px;border:1px solid var(--border);border-radius:16px;background:var(--soft)}
+.step::before{counter-increment:st;content:counter(st);position:absolute;top:-14px;left:18px;width:30px;height:30px;border-radius:50%;background:linear-gradient(90deg,#0b91a7,#2f6bd8);color:#fff;font-weight:900;display:grid;place-items:center;font-size:14px}
+.step b{display:block;margin:2px 0 4px;font-size:14.5px}
+.step p{margin:0;color:var(--muted);font-size:12.5px}
+.step .kbd{display:inline-block;background:#fff;border:1px solid var(--border);border-radius:6px;padding:0 6px;font-size:12px;color:var(--ink);font-weight:700}
+.panel{margin-top:20px;padding:22px;border:1px solid var(--border);border-radius:18px;background:#fff;box-shadow:0 10px 26px rgba(25,72,78,.06)}
+.panel.ios{border-color:#e4e7ea}
+.panel.and{border-color:#c8d9f4;background:#f8fafd}
+.panel h4{margin:0 0 14px;font-size:16px;font-weight:900;display:flex;align-items:center;gap:8px}
+.dl{display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:12px 22px;border-radius:12px;background:linear-gradient(90deg,#0b91a7,#2f6bd8);color:#fff;text-decoration:none;font-weight:900;font-size:14px}
+.mini{color:var(--muted);font-size:11.5px;margin:10px 0 0}
+.note-card{margin-top:16px;padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:#fbfdfe;color:var(--muted);font-size:12.5px}
+.note-card a{color:var(--indigo)}
+footer{padding:26px 20px 40px;border-top:1px solid var(--border);color:var(--muted);text-align:center;font-size:12px;margin-top:44px}
+footer a{color:var(--indigo)}
+</style>
+</head>
+<body>
+<div class="langsw"><a href="/kclauncher.html">日本語</a></div>
+<main>
+
+  <section class="hero">
+    <img class="mark" src="assets/kurage_avatar_face.webp" alt="Kurage">
+    <span class="tagline disp">KURAGE LAUNCHER</span>
+    <h1 class="disp">Open Kurage services<br><em>from your home screen</em></h1>
+    <p class="lead">Calendar, videos, games and new apps — all in one launcher. On iPhone, just Add to Home Screen (no app to install). On Android, download the app. You can add your own server's calendar URL, too.</p>
+    <div class="ctas">
+      <a class="cta ios" href="https://kclauncher.exbridge.jp/iphone/"><span class="em"></span><span>Use on iPhone<small>Safari → Add to Home Screen</small></span></a>
+      <a class="cta and" href="kclauncher.apk"><span class="em">🤖</span><span>Android app<small>Download APK</small></span></a>
+    </div>
+    <p class="cta-note">To try it in any browser, open <a href="https://kclauncher.exbridge.jp/iphone/">kclauncher.exbridge.jp/iphone/</a>.</p>
+  </section>
+
+  <section>
+    <h2 class="sec disp">FEATURES</h2>
+    <h3 class="sec-title disp">What it does</h3>
+    <div class="grid">
+      <div class="card"><span class="ic">🗓</span><b>Calendar</b><p>Read and write Kurage's calendar (syncs with Thunderbird etc.) from your phone while you're out.</p></div>
+      <div class="card"><span class="ic">🎬</span><b>Videos &amp; games</b><p>Jump straight to Kurage video reels and sample games (tarot, climbing).</p></div>
+      <div class="card"><span class="ic">🆕</span><b>New apps</b><p>Check the latest business apps in the Kurage App Store from a tile.</p></div>
+      <div class="card"><span class="ic">➕</span><b>Add your own URL</b><p>Add, edit and delete tiles freely — including your own server's calendar URL.</p></div>
+      <div class="card"><span class="ic">📲</span><b>No app on iPhone</b><p>iPhone runs it as a PWA. Add to Home Screen and it works full-screen like a native app.</p></div>
+      <div class="card"><span class="ic">🔗</span><b>Contents change by URL</b><p>A generic launcher whose contents change by the URL you open — one app, reused everywhere.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec disp">iPHONE</h2>
+    <h3 class="sec-title disp">How to use on iPhone</h3>
+    <div class="steps">
+      <div class="step"><b>Open in Safari</b><p>Open <b>kclauncher.exbridge.jp/iphone/</b> in <span class="kbd">Safari</span> (the "Use on iPhone" button above).</p></div>
+      <div class="step"><b>Add to Home Screen</b><p>Tap the Share button <span class="kbd">􀈂</span> → <b>Add to Home Screen</b>.</p></div>
+      <div class="step"><b>Use it as an app</b><p>Launch full-screen from the "Kurage" icon. Inside a tile, tap <span class="kbd">Done</span> at the top to return to the launcher.</p></div>
+    </div>
+    <div class="panel ios">
+      <h4> No install required</h4>
+      <p style="margin:0;color:var(--muted);font-size:13px">We don't distribute it on the App Store, but adding the Safari PWA to your Home Screen gives you the same full-screen experience as a native app. Open it in <b>Safari</b> (not Chrome) — "Add to Home Screen" is Safari-only.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec disp">ANDROID</h2>
+    <h3 class="sec-title disp">How to use on Android</h3>
+    <div class="steps">
+      <div class="step"><b>Download the APK</b><p>Download <b>kclauncher.apk</b> to your device from the button below.</p></div>
+      <div class="step"><b>Allow install</b><p>The first time, allow installing from <span class="kbd">unknown sources</span> if prompted.</p></div>
+      <div class="step"><b>Launch it</b><p>Open "Kurage Launcher" and tap a tile. Use the device Back button to return to the launcher.</p></div>
+    </div>
+    <div class="panel and">
+      <h4>🤖 Download the Android app</h4>
+      <a class="dl" href="kclauncher.apk">⬇ kclauncher.apk (~3.3MB)</a>
+      <p class="mini">Signed APK. Distributed outside Google Play, so first-time install permission is required. / Prefer not to install? On Android too, open <a href="https://kclauncher.exbridge.jp/iphone/">kclauncher.exbridge.jp/iphone/</a> in Chrome and "Add to Home screen" to use it as a PWA.</p>
+    </div>
+  </section>
+
+  <div class="note-card">
+    <b>Want to run it against your own server?</b> The launcher's calendar opens Kurage's CalDAV server
+    <a href="https://exbridge.jp/cal/">kcaldav</a>. Put <code>kcaldav.php</code> on your own server and add that URL as a tile
+    to use it as your personal calendar.
+  </div>
+
+  <footer>
+    <div>Kurage Launcher ・ <a href="https://kurage.exbridge.jp/">Kurage Project</a> ・ <a href="https://kappstore.exbridge.jp/">Kurage App Store</a></div>
+    <div style="margin-top:6px">iPhone / Android / Web ・ Free</div>
+  </footer>
+</main>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BP0650KDFR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-BP0650KDFR');</script>
+<script>(function(){var s=document.createElement('script');s.src='https://kurage.exbridge.jp/simpletrack.php?url='+encodeURIComponent(location.href)+'&ref='+encodeURIComponent(document.referrer);document.head.appendChild(s)})();</script>
+</body></html>

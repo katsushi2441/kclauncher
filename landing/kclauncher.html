@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kurage ランチャー | Kurageのサービスをホーム画面から1タップで（iPhone / Android）</title>
+<meta name="description" content="カレンダー・動画・ゲーム・新着アプリを1つに。iPhoneは「ホーム画面に追加」だけ（アプリ不要）、Androidはアプリをダウンロード。自分のサーバーのカレンダーURLも追加できる、URLで中身が変わる汎用ランチャー。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kclauncher.exbridge.jp/kclauncher.html">
+<link rel="alternate" hreflang="ja" href="https://kclauncher.exbridge.jp/kclauncher.html">
+<link rel="alternate" hreflang="en" href="https://kclauncher.exbridge.jp/">
+<link rel="alternate" hreflang="x-default" href="https://kclauncher.exbridge.jp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kurage Project">
+<meta property="og:title" content="Kurage ランチャー — Kurageのサービスをホーム画面から1タップで">
+<meta property="og:description" content="カレンダー・動画・ゲーム・新着アプリを1つに。iPhoneはホーム画面に追加だけ、Androidはアプリをダウンロード。">
+<meta property="og:url" content="https://kclauncher.exbridge.jp/kclauncher.html">
+<meta property="og:image" content="https://kclauncher.exbridge.jp/assets/ogp.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kurage ランチャー">
+<meta name="twitter:description" content="Kurageのサービスをホーム画面から1タップで。iPhone / Android 対応。">
+<meta name="twitter:image" content="https://kclauncher.exbridge.jp/assets/ogp.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Kurage ランチャー",
+  "url": "https://kclauncher.exbridge.jp/",
+  "description": "Kurageのカレンダー・動画・ゲーム・新着アプリをホーム画面から開けるランチャー。iPhoneはPWA(ホーム画面に追加)、Androidはアプリ。自分のサーバーのカレンダーURLも追加できる。",
+  "applicationCategory": "Utilities",
+  "operatingSystem": "iOS, Android, Web",
+  "inLanguage": "ja",
+  "image": "https://kclauncher.exbridge.jp/assets/ogp.png",
+  "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "JPY", "description": "無料"}],
+  "publisher": {"@type": "Organization", "name": "Kurage Project", "url": "https://kurage.exbridge.jp/"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#2f6bd8;--cyan:#0b91a7;--ink:#17324d;--muted:#64788a;--border:#dbe6ee;--soft:#f6fbfd}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:#fff;font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8}
+.disp{font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif}
+.langsw{position:absolute;top:14px;right:16px;font-size:12px;z-index:3}
+.langsw a{color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:4px 12px;background:#fff}
+main{max-width:960px;margin:0 auto;padding:0 20px 40px;position:relative}
+.hero{padding:60px 0 34px;text-align:center}
+.mark{width:92px;height:92px;border-radius:50%;border:3px solid var(--cyan);object-fit:cover;box-shadow:0 10px 26px rgba(11,145,167,.22)}
+.tagline{display:block;margin:16px 0 4px;color:var(--cyan);font-size:13px;font-weight:800;letter-spacing:.14em}
+h1{margin:2px 0 8px;font-size:clamp(24px,6.4vw,42px);font-weight:900;overflow-wrap:anywhere}
+h1 em{font-style:normal;color:var(--indigo)}
+.lead{max-width:600px;margin:0 auto 26px;color:var(--muted);font-size:15px}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;text-decoration:none;font-weight:900;font-size:15px;transition:transform .15s}
+.cta:hover{transform:translateY(-2px)}
+.cta.ios{color:#fff;background:linear-gradient(90deg,#111,#333);box-shadow:0 10px 24px rgba(0,0,0,.22)}
+.cta.and{color:#fff;background:linear-gradient(90deg,#0b91a7,#2f6bd8);box-shadow:0 10px 24px rgba(11,145,167,.28)}
+.cta .em{font-size:20px}
+.cta small{display:block;font-weight:700;font-size:11px;opacity:.85}
+@media(max-width:460px){.cta{width:100%;justify-content:center}}
+.cta-note{margin-top:14px;color:var(--muted);font-size:12px}
+.cta-note a{color:var(--indigo)}
+h2.sec{margin:52px 0 6px;font-size:13px;color:var(--cyan);letter-spacing:.12em;font-weight:800}
+h3.sec-title{margin:0 0 20px;font-size:22px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{padding:20px;border:1px solid var(--border);border-radius:16px;background:#fff;box-shadow:0 10px 26px rgba(25,72,78,.06)}
+.card .ic{font-size:24px}
+.card b{display:block;margin:8px 0 4px;font-size:15px}
+.card p{margin:0;color:var(--muted);font-size:12.5px}
+.steps{counter-reset:st;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:22px 18px 18px;border:1px solid var(--border);border-radius:16px;background:var(--soft)}
+.step::before{counter-increment:st;content:counter(st);position:absolute;top:-14px;left:18px;width:30px;height:30px;border-radius:50%;background:linear-gradient(90deg,#0b91a7,#2f6bd8);color:#fff;font-weight:900;display:grid;place-items:center;font-size:14px}
+.step b{display:block;margin:2px 0 4px;font-size:14.5px}
+.step p{margin:0;color:var(--muted);font-size:12.5px}
+.step .kbd{display:inline-block;background:#fff;border:1px solid var(--border);border-radius:6px;padding:0 6px;font-size:12px;color:var(--ink);font-weight:700}
+.panel{margin-top:20px;padding:22px;border:1px solid var(--border);border-radius:18px;background:#fff;box-shadow:0 10px 26px rgba(25,72,78,.06)}
+.panel.ios{border-color:#e4e7ea}
+.panel.and{border-color:#c8d9f4;background:#f8fafd}
+.panel h4{margin:0 0 14px;font-size:16px;font-weight:900;display:flex;align-items:center;gap:8px}
+.dl{display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:12px 22px;border-radius:12px;background:linear-gradient(90deg,#0b91a7,#2f6bd8);color:#fff;text-decoration:none;font-weight:900;font-size:14px}
+.mini{color:var(--muted);font-size:11.5px;margin:10px 0 0}
+.note-card{margin-top:16px;padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:#fbfdfe;color:var(--muted);font-size:12.5px}
+.note-card a{color:var(--indigo)}
+footer{padding:26px 20px 40px;border-top:1px solid var(--border);color:var(--muted);text-align:center;font-size:12px;margin-top:44px}
+footer a{color:var(--indigo)}
+</style>
+</head>
+<body>
+<div class="langsw"><a href="/">English</a></div>
+<main>
+
+  <section class="hero">
+    <img class="mark" src="assets/kurage_avatar_face.webp" alt="Kurage">
+    <span class="tagline disp">KURAGE LAUNCHER</span>
+    <h1 class="disp">Kurageのサービスを<br><em>ホーム画面から1タップ</em>で</h1>
+    <p class="lead">カレンダー・動画・ゲーム・新着アプリを、ひとつのランチャーに。iPhoneは「ホーム画面に追加」するだけ、Androidはアプリをダウンロード。自分のサーバーのカレンダーURLも追加できます。</p>
+    <div class="ctas">
+      <a class="cta ios" href="https://kclauncher.exbridge.jp/iphone/"><span class="em"></span><span>iPhoneで使う<small>Safari →「ホーム画面に追加」</small></span></a>
+      <a class="cta and" href="kclauncher.apk"><span class="em">🤖</span><span>Androidアプリ<small>APKをダウンロード</small></span></a>
+    </div>
+    <p class="cta-note">パソコンやブラウザでそのまま試すなら <a href="https://kclauncher.exbridge.jp/iphone/">kclauncher.exbridge.jp/iphone/</a> を開いてください。</p>
+  </section>
+
+  <section>
+    <h2 class="sec disp">FEATURES</h2>
+    <h3 class="sec-title disp">できること</h3>
+    <div class="grid">
+      <div class="card"><span class="ic">🗓</span><b>カレンダー</b><p>Thunderbird等と同期できるKurageのカレンダーを、外出先からスマホで読み書き。</p></div>
+      <div class="card"><span class="ic">🎬</span><b>動画・ゲーム</b><p>Kurageの動画リールやサンプルゲーム(タロット占い・クライミング)にすぐアクセス。</p></div>
+      <div class="card"><span class="ic">🆕</span><b>アプリ新着</b><p>Kurage App Storeの新着業務アプリをタイルから確認できます。</p></div>
+      <div class="card"><span class="ic">➕</span><b>自分のURLを追加</b><p>タイルは自由に追加・編集・削除。自分のサーバーのカレンダーURLも登録できます。</p></div>
+      <div class="card"><span class="ic">📲</span><b>アプリ不要(iPhone)</b><p>iPhoneはPWA。ホーム画面に追加するだけで全画面アプリのように使えます。</p></div>
+      <div class="card"><span class="ic">🔗</span><b>URLで中身が変わる</b><p>開くURL次第で中身が変わる汎用ランチャー。1つのアプリを使い回せます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec disp">iPHONE</h2>
+    <h3 class="sec-title disp">iPhoneでの使い方</h3>
+    <div class="steps">
+      <div class="step"><b>Safariで開く</b><p><span class="kbd">Safari</span>で <b>kclauncher.exbridge.jp/iphone/</b> を開きます（上の「iPhoneで使う」ボタン）。</p></div>
+      <div class="step"><b>ホーム画面に追加</b><p>共有ボタン <span class="kbd">􀈂</span> →「<b>ホーム画面に追加</b>」をタップ。</p></div>
+      <div class="step"><b>アプリとして使う</b><p>ホームの「Kurage」アイコンから全画面で起動。タイルを開いた先は上部の <span class="kbd">完了</span> でランチャーに戻れます。</p></div>
+    </div>
+    <div class="panel ios">
+      <h4> アプリのインストールは不要</h4>
+      <p style="margin:0;color:var(--muted);font-size:13px">App Storeでの配布はしていませんが、SafariのPWAとしてホーム画面に追加すれば、ネイティブアプリと同じように全画面で使えます。Chromeではなく <b>Safari</b> で開いてください（「ホーム画面に追加」はSafari限定です）。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec disp">ANDROID</h2>
+    <h3 class="sec-title disp">Androidでの使い方</h3>
+    <div class="steps">
+      <div class="step"><b>APKをダウンロード</b><p>下のボタンから <b>kclauncher.apk</b> を端末にダウンロードします。</p></div>
+      <div class="step"><b>インストールを許可</b><p>初回は<span class="kbd">提供元不明のアプリ</span>のインストールを求められたら許可してください。</p></div>
+      <div class="step"><b>起動する</b><p>「Kurageランチャー」を開いてタイルをタップ。端末の戻るでランチャーに戻れます。</p></div>
+    </div>
+    <div class="panel and">
+      <h4>🤖 Androidアプリをダウンロード</h4>
+      <a class="dl" href="kclauncher.apk">⬇ kclauncher.apk（約3.3MB）</a>
+      <p class="mini">署名済みAPKです。Google Play外での配布のため、初回はインストール許可が必要です。／ アプリを入れたくない場合は、Androidでも Chrome で <a href="https://kclauncher.exbridge.jp/iphone/">kclauncher.exbridge.jp/iphone/</a> を開き「ホーム画面に追加」でPWAとして使えます。</p>
+    </div>
+  </section>
+
+  <div class="note-card">
+    <b>自分のサーバーで使いたい方へ。</b> ランチャーのカレンダーは Kurage の CalDAV サーバー
+    <a href="https://exbridge.jp/cal/">kcaldav</a> を開いています。自分のサーバーに <code>kcaldav.php</code> を置いて、
+    その URL をタイルに追加すれば、あなた専用のカレンダーとして使えます。
+  </div>
+
+  <footer>
+    <div>Kurage ランチャー ・ <a href="https://kurage.exbridge.jp/">Kurage Project</a> ・ <a href="https://kappstore.exbridge.jp/">Kurage App Store</a></div>
+    <div style="margin-top:6px">iPhone / Android / Web 対応 ・ 無料</div>
+  </footer>
+</main>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BP0650KDFR"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-BP0650KDFR');</script>
+<script>(function(){var s=document.createElement('script');s.src='https://kurage.exbridge.jp/simpletrack.php?url='+encodeURIComponent(location.href)+'&ref='+encodeURIComponent(document.referrer);document.head.appendChild(s)})();</script>
+</body></html>
