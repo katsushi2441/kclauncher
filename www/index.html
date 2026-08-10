@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Kurage ランチャー</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2f6bd8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kurage">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="icon" href="assets/icon-192.png">
 <style>
   :root{--a:#2f6bd8;--c:#0b91a7}
   *{box-sizing:border-box}
@@ -158,18 +166,34 @@
     if (!on) closeForm();
   });
 
-  // アプリ(Capacitor)ではタイルをアプリ内ブラウザで開く(×で戻れる/本物のChromeで動画も動く)
+  // タイルの開き方(戻れるように環境で分岐):
+  //  ・アプリ(Capacitor)     → アプリ内ブラウザ(Custom Tab)。×で戻る
+  //  ・iPhone等のPWA(standalone) → window.open で別ビュー。iOSは「完了」で戻れる
+  //    (standaloneには戻るボタンが無いので、同一画面で遷移すると詰む)
+  //  ・通常のブラウザタブ    → そのまま遷移(ブラウザの戻るがある)
   var isNative = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
-  if (isNative) {
-    document.getElementById('grid').addEventListener('click', function(e){
-      if (document.body.classList.contains('edit')) return;         // 編集中は開かない
-      var a = e.target.closest ? e.target.closest('a.tile') : null;
-      if (!a) return;
+  var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+                     || window.navigator.standalone === true;
+  document.getElementById('grid').addEventListener('click', function(e){
+    if (document.body.classList.contains('edit')) return;           // 編集中は開かない
+    var a = e.target.closest ? e.target.closest('a.tile') : null;
+    if (!a) return;
+    var url = a.getAttribute('href');
+    if (isNative) {
       e.preventDefault();
       var B = window.Capacitor.Plugins.Browser;
-      if (B && B.open) { B.open({ url:a.getAttribute('href'), toolbarColor:'#2f6bd8', presentationStyle:'fullscreen' }); }
-      else { window.location.href = a.getAttribute('href'); }
-    });
+      if (B && B.open) { B.open({ url:url, toolbarColor:'#2f6bd8', presentationStyle:'fullscreen' }); }
+      else { window.location.href = url; }
+    } else if (isStandalone) {
+      e.preventDefault();
+      window.open(url, '_blank');
+    }
+    // 通常ブラウザは既定の遷移に任せる
+  });
+
+  // PWA(ホーム画面に追加)のService Worker。アプリ(Capacitor)では登録しない
+  if (!isNative && 'serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function(){});
   }
 
   render();
