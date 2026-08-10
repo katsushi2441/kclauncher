@@ -1,6 +1,6 @@
 {
   "appId": "jp.exbridge.kclauncher",
-  "appName": "Kurageランチャー",
+  "appName": "Kurage Capacitor Launcher",
   "webDir": "www",
   "server": {
     "androidScheme": "https",

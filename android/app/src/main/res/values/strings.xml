@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Kurageランチャー</string>
-    <string name="title_activity_main">Kurageランチャー</string>
+    <string name="app_name">Kurage Capacitor Launcher</string>
+    <string name="title_activity_main">Kurage Capacitor Launcher</string>
     <string name="package_name">jp.exbridge.kclauncher</string>
     <string name="custom_url_scheme">jp.exbridge.kclauncher</string>
 </resources>
