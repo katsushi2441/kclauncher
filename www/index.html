@@ -18,10 +18,17 @@
   body{margin:0;background:#eef2f5;color:#22303c;
     font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6;
     padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-  header{background:linear-gradient(90deg,var(--c),var(--a));color:#fff;padding:16px 18px;font-weight:900;font-size:19px;
-    display:flex;align-items:center;gap:10px}
-  header .logo{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:15px}
+  header{background:linear-gradient(120deg,var(--c),var(--a));color:#fff;padding:13px 16px 15px;
+    display:flex;align-items:center;gap:11px}
+  header .av{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.85);object-fit:cover;background:#fff;flex:none}
+  header .ttl{font-weight:900;font-size:16.5px;line-height:1.15}
+  header .sub{font-size:11px;opacity:.9;font-weight:600}
   main{max-width:640px;margin:0 auto;padding:14px 14px 40px}
+  .welcome{position:relative;background:linear-gradient(180deg,#fff,#f3fbfd);border:1px solid #dbe6ee;border-radius:18px;
+    padding:15px 118px 15px 15px;margin-bottom:16px;min-height:132px;overflow:hidden;box-shadow:0 8px 20px rgba(20,40,60,.05)}
+  .welcome h2{font-size:15.5px;color:#17324d;font-weight:900;margin:0 0 4px}
+  .welcome p{margin:0;font-size:12px;color:#5a6b7a;line-height:1.5}
+  .welcome img{position:absolute;right:2px;bottom:0;height:130px;width:auto;filter:drop-shadow(0 5px 10px rgba(20,60,80,.16))}
   .toolbar{display:flex;gap:8px;justify-content:flex-end;margin:0 2px 10px}
   .toolbar button{background:#fff;border:1px solid #cfd9e2;border-radius:999px;padding:7px 16px;font-size:13px;font-weight:800;color:#42566a;cursor:pointer}
   .toolbar button.on{background:var(--a);color:#fff;border-color:var(--a)}
@@ -48,12 +55,45 @@
   .btn{margin-top:12px;width:100%;border:0;border-radius:11px;background:var(--a);color:#fff;font:800 15px inherit;padding:12px;cursor:pointer}
   .btn.ghost{background:#fff;color:#42566a;border:1px solid #cfd9e2;margin-top:8px}
   .hint{color:#8090a0;font-size:11.5px;margin:6px 2px 0}
-  .foot{color:#9aa8b5;font-size:11px;text-align:center;margin-top:24px}
+  /* 新着セクション(1段・横スクロール) */
+  .arr{margin-top:22px}
+  .arr .sec{display:flex;align-items:baseline;justify-content:space-between;margin:0 2px 9px}
+  .arr .sec h3{font-size:15px;font-weight:900;color:#17324d;margin:0;display:flex;align-items:center;gap:7px}
+  .arr .sec h3 .tag{font-size:10px;font-weight:800;color:var(--c);background:#e2f5f8;border-radius:6px;padding:2px 7px}
+  .arr .sec .more{font-size:11.5px;color:var(--a);font-weight:800;text-decoration:none}
+  .shelf{display:flex;gap:10px;overflow-x:auto;padding:2px 14px 12px;margin:0 -14px;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+  .shelf::-webkit-scrollbar{height:0}
+  .pcard,.vcard{flex:none;background:#fff;border:1px solid #dbe3ea;border-radius:14px;text-decoration:none;color:#22303c;
+    scroll-snap-align:start;box-shadow:0 5px 12px rgba(20,40,60,.05);cursor:pointer}
+  .pcard{width:132px;padding:10px;display:flex;flex-direction:column;gap:2px}
+  .pcard .pth{height:58px;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#eaf6f8,#e6edfb);
+    display:grid;place-items:center;font-size:26px;margin-bottom:5px}
+  .pcard .pth img{width:100%;height:100%;object-fit:cover}
+  .pcard b{font-size:12.5px;line-height:1.3}
+  .pcard .pp{font-size:11px;font-weight:800;color:#16805f;margin-top:2px}
+  .vcard{width:162px;padding:8px}
+  .vcard .vth{position:relative;display:block;height:92px;border-radius:10px;overflow:hidden;background:#cfe8ee;margin-bottom:6px}
+  .vcard .vth img{width:100%;height:100%;object-fit:cover}
+  .vcard .play{position:absolute;inset:0;margin:auto;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);
+    color:#fff;display:grid;place-items:center;font-size:13px}
+  .vcard b{font-size:12px;line-height:1.3;display:block;padding:0 2px}
+  .shelf .ld{flex:none;color:#9aa8b5;font-size:12.5px;padding:24px 6px}
+  .foot{color:#9aa8b5;font-size:11px;text-align:center;margin-top:26px}
 </style>
 </head>
 <body>
-<header><span class="logo">🪼</span>Kurage Capacitor Launcher</header>
+<header>
+  <img class="av" src="assets/kurage-face.webp" alt="Kurage">
+  <div><div class="ttl">Kurage Capacitor Launcher</div><div class="sub">Kurageのサービスをホーム画面から</div></div>
+</header>
 <main>
+  <div class="welcome">
+    <h2>こんにちは、Kurage です🪼</h2>
+    <p>カレンダー・動画・ゲーム・新着アプリを、<br>タイルから1タップで開けます。</p>
+    <img src="assets/kurage-body.png" alt="Kurage">
+  </div>
+
   <div class="toolbar"><button id="editBtn">編集</button></div>
   <div class="grid" id="grid"></div>
 
@@ -70,11 +110,24 @@
   </div>
 
   <button class="btn" id="addBtn" style="max-width:640px">＋ リンクを追加</button>
-  <p class="foot">タイルはアプリ内ブラウザで開きます（左上の×でここへ戻る）。<br>powered by Capacitor</p>
+
+  <section class="arr">
+    <div class="sec"><h3>アプリ新着 <span class="tag">Kurage App Store</span></h3>
+      <a class="more" data-open="https://kappstore.exbridge.jp/">すべて →</a></div>
+    <div class="shelf" id="appShelf"><span class="ld">読み込み中…</span></div>
+  </section>
+
+  <section class="arr">
+    <div class="sec"><h3>動画新着 <span class="tag">kuragev</span></h3>
+      <a class="more" data-open="https://kurage.exbridge.jp/kuragev.php">すべて →</a></div>
+    <div class="shelf" id="vidShelf"><span class="ld">読み込み中…</span></div>
+  </section>
+
+  <p class="foot">タイル・新着はアプリ内ブラウザで開きます（左上の×でここへ戻る）。<br>powered by Capacitor</p>
 </main>
 
 <script>
-  var SEED_VERSION = 2;   // 既定タイルを増やしたら上げる(既存インストールにも反映される)
+  var SEED_VERSION = 2;
   var DEFAULTS = [
     {emoji:'🗓', name:'カレンダー',  url:'https://exbridge.jp/cal/'},
     {emoji:'🎬', name:'Kurage動画', url:'https://kurage.exbridge.jp/kuragev.php'},
@@ -84,13 +137,27 @@
   ];
   var editingIndex = null;
 
+  // 開く先の環境分岐(タイルと新着で共通)
+  var isNative = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+  var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+                     || window.navigator.standalone === true;
+  function openUrl(url){
+    if (!url) return;
+    if (isNative) {
+      var B = window.Capacitor.Plugins && window.Capacitor.Plugins.Browser;
+      if (B && B.open) { B.open({ url:url, toolbarColor:'#2f6bd8', presentationStyle:'fullscreen' }); return; }
+      window.location.href = url; return;
+    }
+    if (isStandalone) { window.open(url, '_blank'); return; }
+    window.location.href = url;
+  }
+
   function load(){
     var raw = localStorage.getItem('kc_tiles');
     var list;
     if (raw === null) { list = DEFAULTS.slice(); }
     else { try { list = JSON.parse(raw); if (!Array.isArray(list)) list = DEFAULTS.slice(); }
            catch(e){ list = DEFAULTS.slice(); } }
-    // 既定の追加分を、未登録のURLだけ補う(削除済みは復活させない=バージョン管理)
     var sv = parseInt(localStorage.getItem('kc_seed_v') || '0', 10);
     if (sv < SEED_VERSION) {
       var have = {}; list.forEach(function(t){ have[t.url] = 1; });
@@ -107,7 +174,7 @@
     var list = load();
     var g = document.getElementById('grid');
     g.innerHTML = list.length ? list.map(function(x,i){
-      return '<a class="tile" href="'+esc(x.url)+'">'
+      return '<a class="tile" data-open="'+esc(x.url)+'">'
         + '<span class="acts"><button class="edit" data-edit="'+i+'">✎</button>'
         + '<button class="del" data-del="'+i+'">×</button></span>'
         + '<span class="emoji">'+esc(x.emoji||'🔗')+'</span>'
@@ -166,30 +233,44 @@
     if (!on) closeForm();
   });
 
-  // タイルの開き方(戻れるように環境で分岐):
-  //  ・アプリ(Capacitor)     → アプリ内ブラウザ(Custom Tab)。×で戻る
-  //  ・iPhone等のPWA(standalone) → window.open で別ビュー。iOSは「完了」で戻れる
-  //    (standaloneには戻るボタンが無いので、同一画面で遷移すると詰む)
-  //  ・通常のブラウザタブ    → そのまま遷移(ブラウザの戻るがある)
-  var isNative = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
-  var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
-                     || window.navigator.standalone === true;
-  document.getElementById('grid').addEventListener('click', function(e){
-    if (document.body.classList.contains('edit')) return;           // 編集中は開かない
-    var a = e.target.closest ? e.target.closest('a.tile') : null;
-    if (!a) return;
-    var url = a.getAttribute('href');
-    if (isNative) {
-      e.preventDefault();
-      var B = window.Capacitor.Plugins.Browser;
-      if (B && B.open) { B.open({ url:url, toolbarColor:'#2f6bd8', presentationStyle:'fullscreen' }); }
-      else { window.location.href = url; }
-    } else if (isStandalone) {
-      e.preventDefault();
-      window.open(url, '_blank');
+  // クリックで開く(タイル・新着・「すべて」を data-open で一元処理)
+  document.addEventListener('click', function(e){
+    if (document.body.classList.contains('edit')) {
+      if (e.target.closest && e.target.closest('.grid')) return; // 編集中はタイルを開かない
     }
-    // 通常ブラウザは既定の遷移に任せる
+    var el = e.target.closest ? e.target.closest('[data-open]') : null;
+    if (!el) return;
+    e.preventDefault();
+    openUrl(el.getAttribute('data-open'));
   });
+
+  // 新着(kappstore) ライブ取得
+  function loadApps(){
+    var box = document.getElementById('appShelf');
+    fetch('https://kappstore.exbridge.jp/catalog.php').then(function(r){return r.json();}).then(function(d){
+      var items = (d && d.products) ? d.products.slice(0,12) : [];
+      if (!items.length){ box.innerHTML='<span class="ld">新着はありません</span>'; return; }
+      box.innerHTML = items.map(function(p){
+        var price = (p.price_jpy===0||p.price_jpy==null) ? '無料' : Number(p.price_jpy).toLocaleString()+'円';
+        var thumb = p.image ? '<img src="'+esc(p.image)+'" alt="">' : (p.name?esc(p.name.slice(0,1)):'🧩');
+        return '<a class="pcard" data-open="'+esc(p.url)+'"><span class="pth">'+thumb+'</span>'
+          + '<b>'+esc(p.name||'')+'</b><span class="pp">'+esc(price)+'</span></a>';
+      }).join('');
+    }).catch(function(){ box.innerHTML='<span class="ld">読み込みに失敗しました</span>'; });
+  }
+  // 新着(kuragev) ライブ取得
+  function loadVideos(){
+    var box = document.getElementById('vidShelf');
+    fetch('https://kurage.exbridge.jp/kuragev_feed.php?limit=12').then(function(r){return r.json();}).then(function(d){
+      var items = (d && d.videos) ? d.videos : [];
+      if (!items.length){ box.innerHTML='<span class="ld">新着はありません</span>'; return; }
+      box.innerHTML = items.map(function(v){
+        return '<a class="vcard" data-open="'+esc(v.page_url)+'"><span class="vth">'
+          + '<img src="'+esc(v.thumb_url)+'" alt="" loading="lazy"><span class="play">▶</span></span>'
+          + '<b>'+esc(v.title||'Kurage動画')+'</b></a>';
+      }).join('');
+    }).catch(function(){ box.innerHTML='<span class="ld">読み込みに失敗しました</span>'; });
+  }
 
   // PWA(ホーム画面に追加)のService Worker。アプリ(Capacitor)では登録しない
   if (!isNative && 'serviceWorker' in navigator) {
@@ -197,6 +278,8 @@
   }
 
   render();
+  loadApps();
+  loadVideos();
 </script>
 </body>
 </html>
