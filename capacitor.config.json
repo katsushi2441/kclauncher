@@ -1,0 +1,12 @@
+{
+  "appId": "jp.exbridge.kclauncher",
+  "appName": "Kurageランチャー",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
