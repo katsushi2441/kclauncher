@@ -66,17 +66,31 @@
 </main>
 
 <script>
+  var SEED_VERSION = 2;   // 既定タイルを増やしたら上げる(既存インストールにも反映される)
   var DEFAULTS = [
     {emoji:'🗓', name:'カレンダー',  url:'https://exbridge.jp/cal/'},
-    {emoji:'🎬', name:'Kurage動画', url:'https://kurage.exbridge.jp/kuragev.php'}
+    {emoji:'🎬', name:'Kurage動画', url:'https://kurage.exbridge.jp/kuragev.php'},
+    {emoji:'🔮', name:'タロット占い', url:'https://kurage.exbridge.jp/ktarot.html'},
+    {emoji:'🧗', name:'クライミング', url:'https://kurage.exbridge.jp/kclimbing.html'},
+    {emoji:'🆕', name:'アプリ新着',  url:'https://kappstore.exbridge.jp/'}
   ];
   var editingIndex = null;
 
   function load(){
     var raw = localStorage.getItem('kc_tiles');
-    if (raw === null) { save(DEFAULTS); return DEFAULTS.slice(); }
-    try { var a = JSON.parse(raw); return Array.isArray(a) ? a : DEFAULTS.slice(); }
-    catch(e){ return DEFAULTS.slice(); }
+    var list;
+    if (raw === null) { list = DEFAULTS.slice(); }
+    else { try { list = JSON.parse(raw); if (!Array.isArray(list)) list = DEFAULTS.slice(); }
+           catch(e){ list = DEFAULTS.slice(); } }
+    // 既定の追加分を、未登録のURLだけ補う(削除済みは復活させない=バージョン管理)
+    var sv = parseInt(localStorage.getItem('kc_seed_v') || '0', 10);
+    if (sv < SEED_VERSION) {
+      var have = {}; list.forEach(function(t){ have[t.url] = 1; });
+      DEFAULTS.forEach(function(d){ if (!have[d.url]) list.push(d); });
+      localStorage.setItem('kc_seed_v', String(SEED_VERSION));
+      save(list);
+    }
+    return list;
   }
   function save(a){ localStorage.setItem('kc_tiles', JSON.stringify(a)); }
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
