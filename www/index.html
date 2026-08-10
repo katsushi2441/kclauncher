@@ -67,12 +67,8 @@
 <script>
   // 既定のKurageサービス(URLを差し替えれば中身が変わる、という思想の実例)
   var BUILTIN = [
-    {emoji:'🗓', name:'カレンダー',   url:'https://exbridge.jp/cal/'},
-    {emoji:'🎬', name:'Kurage動画',  url:'https://kurage.exbridge.jp/kuragev.php'},
-    {emoji:'🛒', name:'アプリストア', url:'https://kappstore.exbridge.jp/'},
-    {emoji:'📈', name:'AI投資委員会', url:'https://kurage.exbridge.jp/kaic.php'},
-    {emoji:'🧠', name:'株AI分析',     url:'https://kurage.exbridge.jp/ktajp.php'},
-    {emoji:'🔍', name:'GEO監査',      url:'https://kurage.exbridge.jp/kgeo.php'}
+    {emoji:'🗓', name:'カレンダー',  url:'https://exbridge.jp/cal/'},
+    {emoji:'🎬', name:'Kurage動画', url:'https://kurage.exbridge.jp/kuragev.php'}
   ];
 
   function load(){ try{ return JSON.parse(localStorage.getItem('kc_links')||'[]'); }catch(e){ return []; } }
